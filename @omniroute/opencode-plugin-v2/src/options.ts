@@ -45,6 +45,9 @@ const pluginOptionsSchema = z
     visibleModels: z.array(z.string()).optional(),
     hiddenModels: z.array(z.string()).optional(),
     usableOnly: z.boolean().default(false),
+    // Per-provider showcase size: how many models each provider keeps in
+    // the default view. Absent means the catalog default below.
+    showcasePerOwner: z.number().positive().optional(),
     // v1 parity: enrichment overlay on by default (names + pricing).
     enrichment: z.boolean().default(true),
     // v1 parity: strip the JSON-Schema keywords Gemini rejects from tool

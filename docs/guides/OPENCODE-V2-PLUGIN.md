@@ -87,6 +87,7 @@ naming the endpoint and what was lost — so a degraded picker is never a myster
 | `enrichment`                     | `true`                                         | Fetch names, pricing and free-tier budgets                                                             |
 | `providerTag`                    | `true`                                         | Prefix a display name with the upstream provider it routes to                                          |
 | `usableOnly`                     | `false`                                        | Keep only providers the gateway reports as provisioned                                                 |
+| `showcasePerOwner`               | `10`                                           | Default-view entries kept per provider                                                                 |
 | `visibleModels` / `hiddenModels` | `[]`                                           | Exact-or-suffix allowlists; deny wins                                                                  |
 | `geminiSanitization`             | `true`                                         | Strip the JSON-Schema keywords Gemini rejects from tool schemas (`$ref` tools are forwarded untouched) |
 | `apiFormat.allowAnthropic`       | `false`                                        | Route allowlisted ids through the Anthropic API block                                                  |

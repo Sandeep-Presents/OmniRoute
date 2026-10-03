@@ -17,7 +17,7 @@ import type {
   OmniRouteRawModelEntry,
 } from "./shared/index.js";
 import type { ResolvedOptions } from "./catalog.js";
-import { buildProviderPayload, collectCatalog } from "./catalog.js";
+import { SHOWCASE_PER_OWNER, buildProviderPayload, collectCatalog } from "./catalog.js";
 import {
   DEFAULT_MODEL_CACHE_TTL_MS,
   UNREACHABLE_COOLDOWN_MS,
@@ -83,6 +83,7 @@ function toResolvedOptions(parsed: PluginOptions): ResolvedOptions {
     visibleModels: parsed.visibleModels,
     hiddenModels: parsed.hiddenModels,
     usableOnly: parsed.usableOnly,
+    showcasePerOwner: parsed.showcasePerOwner ?? SHOWCASE_PER_OWNER,
     enrichment: parsed.enrichment,
   };
 }
