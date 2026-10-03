@@ -21,6 +21,33 @@ describe("parsePluginOptions", () => {
     const opts = parsePluginOptions({ baseURL: "https://gw.example.com", modelCacheTtlMs: 60000 });
     assert.equal(opts.modelCacheTtlMs, 60000);
   });
+  it("accepts a showcase size of seven", () => {
+    const opts = parsePluginOptions({
+      baseURL: "https://gw.example.com",
+      showcasePerOwner: 7,
+    });
+    assert.equal(opts.showcasePerOwner, 7);
+  });
+  it("leaves the showcase size unset when absent", () => {
+    const opts = parsePluginOptions({ baseURL: "https://gw.example.com" });
+    assert.equal(opts.showcasePerOwner, undefined);
+  });
+  it("accepts a custom showcase size", () => {
+    const opts = parsePluginOptions({ baseURL: "https://gw.example.com", showcasePerOwner: 3 });
+    assert.equal(opts.showcasePerOwner, 3);
+  });
+  it("rejects a non-positive showcase size", () => {
+    for (const showcasePerOwner of [0, -1, Number.NaN]) {
+      assert.throws(() =>
+        parsePluginOptions({ baseURL: "https://gw.example.com", showcasePerOwner })
+      );
+    }
+  });
+  it("rejects a non-numeric showcase size", () => {
+    assert.throws(() =>
+      parsePluginOptions({ baseURL: "https://gw.example.com", showcasePerOwner: "10" })
+    );
+  });
   it("rejects a non-positive modelCacheTtlMs", () => {
     assert.throws(() =>
       parsePluginOptions({ baseURL: "https://gw.example.com", modelCacheTtlMs: 0 })
